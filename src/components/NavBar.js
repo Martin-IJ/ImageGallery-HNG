@@ -8,7 +8,7 @@ const NavBar = () => {
   const [user] = useAuthState(auth);
   return (
     <div>
-      <nav className="fixed top-0 left-0 right-0 z-10 bg-white flex flex-wrap gap-3 px-2 items-center justify-around">
+      <nav className="fixed top-0 left-0 right-0 z-10 bg-white flex flex-wrap gap-2 px-2 pb-3 items-center justify-around">
         <Link to="/home">
           <div className="flex items-center">
             <img src={Logo} alt="logo" className="w-[80px]" />
