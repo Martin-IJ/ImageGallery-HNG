@@ -3,32 +3,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { auth, sendPasswordReset } from "../Firebase";
-import "./Reset.css";
 
-const Reset = () => {
+const ResetPassword = () => {
   const [email, setEmail] = useState("");
-  const [user, loading] = useAuthState(auth);
+  const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
-
-  const handleResetClick = async () => {
-    if (!email) {
-      alert("Please enter an email address.");
-      return;
-    }
-
-    try {
-      await sendPasswordReset(email);
-      alert("Password reset email sent successfully.");
-    } catch (error) {
-      console.error("Error sending password reset email:", error.message);
-      alert("An error occurred while sending the password reset email.");
-    }
-  };
-
   useEffect(() => {
     if (loading) return;
-    if (user) navigate("/dashboard");
-  }, [user, loading, navigate]);
+    if (user) navigate("/login");
+  }, [user, loading]);
 
   return (
     <div className="reset">
@@ -40,15 +23,18 @@ const Reset = () => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
         />
-        <button className="reset__btn" onClick={handleResetClick}>
+        <button
+          className="reset__btn"
+          onClick={() => sendPasswordReset(email)}
+        >
           Send password reset email
         </button>
         <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
+          <Link to="/login" className="text-main-color">Click to Login</Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default Reset;
+export default ResetPassword;

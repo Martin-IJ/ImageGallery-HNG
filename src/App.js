@@ -8,7 +8,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Reset from "./components/Reset";
-import Dashboard from "./components/Dashboard";
+import LandingPage from "./components/LandingPage";
 
 function App() {
   return (
@@ -16,12 +16,12 @@ function App() {
       <SkeletonTheme baseColor="#202020" highlightColor="#444">
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<Home />} />
           <Route path="uploadImage" element={<DropBox />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="reset" element={<Reset />} />
-          <Route path="dashboard" element={<Dashboard />} />
         </Routes>
       </SkeletonTheme>
     </div>
